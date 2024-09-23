@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>Achat Chargeur Solaire</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #4CAF50, #8BC34A);
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #2C3E50;
+        }
+        .btn {
+            color: #fff;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .info-text {
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function calculatePrice(productPrice, quantity) {
+            let totalPrice = productPrice * quantity;
+            let message = "";
+
+            if (totalPrice > 100000) {
+                totalPrice *= 0.95; // Réduction de 5%
+                message = "Vous avez bénéficié d'une réduction de 5%!";
+            }
+
+            document.getElementById('totalPrice').innerText = `Prix Total: ${totalPrice.toFixed(2)} Ar`;
+            document.getElementById('reductionMsg').innerText = message;
+            return totalPrice;
+        }
+
+        function buyProduct(productPrice) {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const totalPrice = calculatePrice(productPrice, quantity);
+            alert(`Payer aujourd'hui = ${totalPrice.toFixed(2)} Ar`);
+        }
+    </script>
+</head>
+<body>
+    <div class="container text-center my-4">
+        <h1>Chargeur Solaire</h1>
+        <p>Rechargez vos appareils avec l'énergie solaire.</p>
+        <p>Prix: 80,000 Ar par kg</p>
+        <p>Prix du service: 50,000 Ar/kilo (inclus dans le total)</p>
+        <label for="quantity">Quantité (kg): </label>
+        <input type="number" min="1" id="quantity" value="1" class="form-control" style="width: 200px; display: inline;" />
+        <button class="btn btn-success" onclick="buyProduct(80000)">Acheter</button>
+        <p id="totalPrice">Prix Total: 0.00 Ar</p>
+        <p id="reductionMsg" style="color: red;"></p>
+    </div>
+</body>
+</html>
